@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sumanth B N - Full Stack Developer & B.Tech CSE Graduate. MERN stack developer with experience in React, Node.js, MongoDB, and modern web technologies." />
+    <meta name="keywords" content="full stack developer, mern stack, react developer, web developer, portfolio, javascript, python, mongodb, nodejs" />
+    <meta name="author" content="Sumanth B N" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Sumant B N - Full Stack Developer Portfolio" />
+    <meta property="og:description" content="B.Tech CSE graduate and MERN stack developer specializing in React, Node.js, MongoDB, and modern web technologies." />
+    <meta property="og:type" content="website" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>Sumanth B N - Full Stack Developer Portfolio</title>
+    
+    <style>
+      /* Critical CSS for loading state */
+      body {
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading animation */
+      .loading-spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div style="display: flex; justify-content: center; align-items: center; height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+        <div style="text-align: center; color: white;">
+          <div class="loading-spinner" style="margin-bottom: 20px;"></div>
+          <p style="font-size: 18px; margin: 0;">Loading Portfolio...</p>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
