@@ -79,8 +79,8 @@ const About = () => {
               About Me
             </h2>
             <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              B.Tech Computer Science & Engineering graduate from Sri Krishnadevaraya University with 
-              Full Stack Development certification from Masai School. Passionate about building scalable 
+              B.Tech Computer Science & Engineering graduate(2021-2025) from Sri Krishnadevaraya University with 
+              Full Stack Development certification from Masai School(Feb 2025-Nov 2025). Passionate about building scalable 
               web applications and solving real-world problems through code.
             </p>
           </motion.div>
@@ -93,7 +93,7 @@ const About = () => {
               className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8"
             >
               <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                My Journey & Experience
+                My Journey
               </h3>
               <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
                 I’ve completed an intensive Full Stack Development program at Masai School, gaining hands-on experience with the MERN stack. During the course, I developed dynamic features and achieved a 30% improvement in API response times through database optimization. I bring strong problem-solving skills, curiosity, and a collaborative spirit to every project I work on.

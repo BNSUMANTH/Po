@@ -17,9 +17,9 @@ function App() {
       <main>
         <Hero />
   <About />
-  <GitHubSection />
+  <Skills />
   <Projects />
-        <Skills />
+        <GitHubSection />
         <Contact />
       </main>
       <Footer />

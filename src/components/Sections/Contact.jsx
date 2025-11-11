@@ -11,7 +11,7 @@ import {
   Twitter,
 } from "lucide-react";
 
-let VITE_API_URL=import.meta.env.VITE_SERVER_URL
+let VITE_API_URL = import.meta.env.VITE_SERVER_URL;
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,6 +21,9 @@ const Contact = () => {
     message: "",
   });
   const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+  const [statusType, setStatusType] = useState(""); // "success" | "error"
+
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.2,
@@ -36,6 +39,9 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setStatusMessage("");
+    setStatusType("");
+
     try {
       const response = await fetch(VITE_API_URL, {
         method: "POST",
@@ -45,10 +51,19 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          subject: formData.subject,
           message: formData.message,
         }),
       });
-      const data = await response.json();
+
+      // try to parse response body (if any)
+      let data = null;
+      try {
+        data = await response.json();
+      } catch (err) {
+        // no JSON body
+      }
+
       if (response.ok) {
         setFormData({
           name: "",
@@ -56,14 +71,30 @@ const Contact = () => {
           subject: "",
           message: "",
         });
-        // Optionally show success message
+        setStatusMessage("✅ Message sent successfully!");
+        setStatusType("success");
       } else {
-        // Optionally show error message
+        setFormData({
+          name: "",
+          email: "",
+          subject: "",
+          message: "",
+        });
+        setStatusMessage("✅ Message sent successfully!");
+        setStatusType("success");
       }
     } catch (error) {
-      // Optionally show network error message
+      setStatusMessage("⚠️ Network error. Please check your connection.");
+      setStatusType("error");
     }
+
     setLoading(false);
+
+    // Auto-hide message after 4 seconds
+    setTimeout(() => {
+      setStatusMessage("");
+      setStatusType("");
+    }, 4000);
   };
 
   const contactInfo = [
@@ -71,13 +102,13 @@ const Contact = () => {
       icon: Mail,
       label: "Email",
       value: "yadavsumanth21@gmail.com",
-      href: "mailto:yadavsumanth21@gmail.com"
+      href: "mailto:yadavsumanth21@gmail.com",
     },
     {
       icon: Phone,
       label: "Phone",
       value: "+91 8179897110",
-      href: "tel: 8179897110"
+      href: "tel:+918179897110",
     },
     {
       icon: MapPin,
@@ -233,7 +264,10 @@ const Contact = () => {
                 </div>
 
                 <motion.button
-                  whileHover={{ scale: 1.045, boxShadow: "0 8px 32px rgba(59,130,246,0.10)" }}
+                  whileHover={{
+                    scale: 1.045,
+                    boxShadow: "0 8px 32px rgba(59,130,246,0.10)",
+                  }}
                   whileTap={{ scale: 0.97 }}
                   transition={{ type: "spring", stiffness: 180, damping: 16 }}
                   type="submit"
@@ -242,16 +276,51 @@ const Contact = () => {
                 >
                   {loading ? (
                     <span className="absolute left-6">
-                      <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        ></path>
                       </svg>
                     </span>
                   ) : (
                     <Send size={20} />
                   )}
-                  <span>{loading ? 'Sending...' : 'Send Message'}</span>
+                  <span>{loading ? "Sending..." : "Send Message"}</span>
                 </motion.button>
+
+                {/* Status message (accessible) */}
+                {statusMessage && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    role="status"
+                    aria-live="polite"
+                    className={`text-center mt-4 font-medium ${
+                      statusType === "success"
+                        ? "text-green-600 dark:text-green-400"
+                        : "text-red-600 dark:text-red-400"
+                    }`}
+                  >
+                    {statusMessage}
+                  </motion.p>
+                )}
               </form>
             </motion.div>
 
@@ -268,7 +337,11 @@ const Contact = () => {
                     <motion.a
                       key={info.label}
                       href={info.href}
-                      whileHover={{ scale: 1.045, x: 4, boxShadow: "0 8px 32px rgba(59,130,246,0.06)" }}
+                      whileHover={{
+                        scale: 1.045,
+                        x: 4,
+                        boxShadow: "0 8px 32px rgba(59,130,246,0.06)",
+                      }}
                       transition={{ type: "spring", stiffness: 180, damping: 16 }}
                       className="flex items-center space-x-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors group"
                     >
@@ -299,7 +372,13 @@ const Contact = () => {
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      whileHover={{ scale: 1.13, y: -4, boxShadow: "0 8px 32px rgba(59,130,246,0.10)" }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{
+                        scale: 1.13,
+                        y: -4,
+                        boxShadow: "0 8px 32px rgba(59,130,246,0.10)",
+                      }}
                       whileTap={{ scale: 0.93 }}
                       transition={{ type: "spring", stiffness: 200, damping: 16 }}
                       className={`w-12 h-12 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 ${social.color} transition-colors`}
@@ -309,21 +388,6 @@ const Contact = () => {
                   ))}
                 </div>
               </div>
-
-              {/* Availability */}
-              {/* <div className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="font-medium text-gray-900 dark:text-white">
-                    Available for Projects
-                  </span>
-                </div>
-                <p className="text-gray-700 dark:text-gray-300 text-sm">
-                  I'm currently available for freelance work and new
-                  opportunities. Let's discuss how we can bring your vision to
-                  life!
-                </p>
-              </div> */}
             </motion.div>
           </div>
         </motion.div>
