@@ -8,14 +8,13 @@ const Skills = () => {
     threshold: 0.2
   });
 
-  // Skill logos (replace with your own logo URLs or import SVGs as needed)
   const skillCategories = [
     {
       title: "Languages & Core",
       skills: [
         { name: "JavaScript", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
         { name: "Python", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Data Structures & Algorithms", logo: "https://img.icons8.com/ios-filled/50/000000/data-configuration.png" },
+        { name: "Data Structures & Algorithms", logo: "https://img.icons8.com/ios-filled/50/000000/data-configuration.png" },
         { name: "HTML/CSS", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" }
       ]
     },
@@ -23,7 +22,7 @@ const Skills = () => {
       title: "Frontend Development",
       skills: [
         { name: "React.js", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/000000/tailwindcss.png" },
+        { name: "Tailwind CSS", logo: "https://img.icons8.com/color/48/000000/tailwindcss.png" },
         { name: "Vite", logo: "https://vitejs.dev/logo.svg" },
         { name: "Responsive Design", logo: "https://img.icons8.com/ios-filled/50/monitor--v1.png" }
       ]
@@ -39,7 +38,6 @@ const Skills = () => {
     }
   ];
 
-  // Enhanced container and item variants for professional animation
   const containerVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -70,19 +68,6 @@ const Skills = () => {
     },
   };
 
-  const skillBarVariants = {
-    hidden: { width: 0 },
-    visible: (level) => ({
-      width: `${level}%`,
-      transition: {
-        type: "spring",
-        stiffness: 120,
-        damping: 18,
-        delay: 0.25,
-      },
-    }),
-  };
-
   return (
     <section id="skills" className="py-20 bg-white dark:bg-gray-800">
       <div className="container mx-auto px-6">
@@ -105,7 +90,7 @@ const Skills = () => {
 
           {/* Skills Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {skillCategories.map((category, categoryIndex) => (
+            {skillCategories.map((category) => (
               <motion.div
                 key={category.title}
                 variants={itemVariants}
@@ -117,7 +102,7 @@ const Skills = () => {
                   {category.title}
                 </h3>
                 <div className="grid grid-cols-2 gap-6 md:grid-cols-2 lg:grid-cols-1">
-                  {category.skills.map((skill, skillIndex) => (
+                  {category.skills.map((skill) => (
                     <div key={skill.name} className="flex items-center space-x-4">
                       <img
                         src={skill.logo}
@@ -135,33 +120,7 @@ const Skills = () => {
             ))}
           </div>
 
-          {/* Technical Philosophy */}
-          <motion.div 
-            variants={itemVariants}
-            className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8"
-          >
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
-              Experience & Certifications
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Education & Training</h4>
-                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>• B.Tech CSE - Sri Krishnadevaraya University</li>
-                  <li>• Full Stack Development - Masai School</li>
-                  <li>• MERN Stack Internship - EXCELR</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-2">Achievements</h4>
-                <ul className="space-y-2 text-gray-700 dark:text-gray-300">
-                  <li>• 5-Star Python - HackerRank</li>
-                  <li>• 250+ LeetCode Problems Solved</li>
-                  <li>• Hackathon Participant - Xto10X Edition #4</li>
-                </ul>
-              </div>
-            </div>
-          </motion.div>
+          {/* (Removed Experience & Certifications from here — moved to About) */}
         </motion.div>
       </div>
     </section>

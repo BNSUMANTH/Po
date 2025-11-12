@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code2, Lightbulb, Users, Rocket } from 'lucide-react';
+import { Code2, Lightbulb, Users, Rocket, Briefcase, BookOpen, UserCheck } from 'lucide-react';
 import GitHubStatus from '../GitHubStatus';
 
 const About = () => {
@@ -10,7 +10,6 @@ const About = () => {
     threshold: 0.2
   });
 
-  // Enhanced container and item variants for professional animation
   const containerVariants = {
     hidden: { opacity: 0, y: 40 },
     visible: {
@@ -20,23 +19,22 @@ const About = () => {
         type: "spring",
         stiffness: 60,
         damping: 18,
-        staggerChildren: 0.16,
-        delayChildren: 0.15,
+        staggerChildren: 0.12,
+        delayChildren: 0.12,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.98 },
+    hidden: { opacity: 0, y: 28, scale: 0.99 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
         type: "spring",
-        stiffness: 80,
+        stiffness: 90,
         damping: 16,
-        mass: 0.7,
       },
     },
   };
@@ -45,23 +43,27 @@ const About = () => {
     {
       icon: Code2,
       title: "Full Stack Development",
-      description: "Experienced in MERN stack development with hands-on experience from Masai School . I build end-to-end applications with scalable architecture."
+      description:
+        "Proficient in the MERN stack (MongoDB, Express, React, Node.js) and Firebase. Skilled in building secure, scalable, and efficient full-stack applications."
     },
     {
       icon: Lightbulb,
       title: "Problem Solving",
-      description: "Strong foundation in Data Structures & Algorithms with 250+ LeetCode problems solved. I approach challenges with analytical thinking and efficient solutions."
+      description:
+        "Strong foundation in Data Structures & Algorithms with 250+ LeetCode problems solved. Known for analytical thinking and optimization techniques."
     },
     {
       icon: Users,
       title: "Collaboration & Communication",
-      description: "Proven ability to work in teams through hackathons and collaborative projects. I believe in clear communication and knowledge sharing."
+      description:
+        "Team player experienced in agile workflows, collaborative problem-solving, and communicating effectively in remote and team environments."
     },
     {
       icon: Rocket,
       title: "Continuous Learning",
-      description: "Fast learner with multiple certifications and hands-on project experience. I stay updated with modern technologies and best practices."
-    }
+      description:
+        "Committed to continuous learning with certifications in web development, MS Office, and Coursera programs. Always exploring new technologies."
+    },
   ];
 
   return (
@@ -74,58 +76,73 @@ const About = () => {
           animate={inView ? "visible" : "hidden"}
           className="max-w-6xl mx-auto"
         >
+          {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               About Me
             </h2>
             <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              B.Tech Computer Science & Engineering graduate(2021-2025) from Sri Krishnadevaraya University with 
-              Full Stack Development certification from Masai School(Feb 2025-Nov 2025). Passionate about building scalable 
-              web applications and solving real-world problems through code.
+              Proactive Full Stack Developer skilled in JavaScript, MERN stack, and Firebase.
+              I build scalable and responsive web applications, handle API integrations, and ensure performance and security.
+              Quick learner with excellent problem-solving and communication skills.
             </p>
           </motion.div>
 
-          {/* Bento Grid Layout */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-            {/* Main Story Card */}
-            <motion.div
-              variants={itemVariants}
-              className="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-2xl p-8"
-            >
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
-                My Journey
-              </h3>
-              <p className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
-                I’ve completed an intensive Full Stack Development program at Masai School, gaining hands-on experience with the MERN stack. During the course, I developed dynamic features and achieved a 30% improvement in API response times through database optimization. I bring strong problem-solving skills, curiosity, and a collaborative spirit to every project I work on.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <span className="px-2 py-0.5 bg-blue-100 dark:bg-blue-900/30 text-blue-800 dark:text-blue-300 rounded-full text-xs font-medium">
-                  MERN Stack Developer
-                </span>
-                <span className="px-2 py-0.5 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-xs font-medium">
-                  Problem Solver
-                </span>
-                <span className="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300 rounded-full text-xs font-medium">
-                  Fast Learner
-                </span>
+          {/* Education */}
+          <motion.div variants={itemVariants} className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-8 mb-12">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Education</h3>
+              <BookOpen className="w-5 h-5 text-gray-500 dark:text-gray-300" />
+            </div>
+            <ul className="space-y-4 text-gray-700 dark:text-gray-300">
+              <li>
+                <div className="font-medium">Masai School</div>
+                <div className="text-sm">Full Stack Development (Feb 2025 – Sep 2025)</div>
+              </li>
+              <li>
+                <div className="font-medium">Sri Krishnadevaraya University</div>
+                <div className="text-sm">
+                  B.Tech in Computer Science & Engineering (2021 – 2025), Anantapur, Andhra Pradesh
+                </div>
+              </li>
+            </ul>
+          </motion.div>
+
+          {/* Experience */}
+          <motion.div variants={itemVariants} className="bg-gray-50 dark:bg-gray-700/50 rounded-2xl p-8 mb-12">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">Experience</h3>
+              <Briefcase className="w-5 h-5 text-gray-500 dark:text-gray-300" />
+            </div>
+            <div className="space-y-3 text-gray-700 dark:text-gray-300">
+              <div className="font-medium">
+                Full Stack Web Development Trainee — Masai School (Remote)
               </div>
-            </motion.div>
+              <div className="text-sm mb-2">Feb 2025 – Oct 2025</div>
+              <ul className="list-disc ml-5 space-y-2 text-sm">
+                <li>Developed 5+ full-stack applications using MERN stack (MongoDB, Express, React, Node.js).</li>
+                <li>Implemented secure authentication systems and optimized database queries (30% faster).</li>
+                <li>Handled 100+ API requests per day ensuring scalability and performance.</li>
+                <li>Collaborated in Agile teams of 3–5 members simulating real-world workflows.</li>
+                <li>Solved 200+ coding problems improving problem-solving and DSA fundamentals.</li>
+              </ul>
+            </div>
+          </motion.div>
 
 
-
-            {/* Stats Card */}
-            <motion.div
-              variants={itemVariants}
-              className="bg-gradient-to-br from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-8 flex flex-col justify-center"
-            >
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">250+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">LeetCode Problems</div>
-                <div className="text-2xl font-bold text-gray-900 dark:text-white mb-2">4⭐</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Java HackerRank</div>
-              </div>
-            </motion.div>
-          </div>
+          {/* Certifications & Achievements */}
+          <motion.div variants={itemVariants} className="bg-gradient-to-br from-indigo-50 to-cyan-50 dark:from-indigo-900/20 dark:to-cyan-900/20 rounded-2xl p-6 mb-12">
+            <h4 className="text-base font-semibold text-gray-900 dark:text-white mb-3">
+              Certifications & Achievements
+            </h4>
+            <ul className="list-disc ml-5 text-gray-700 dark:text-gray-300 text-sm space-y-2">
+              <li>Hackathon Edition 4 by Masai School (2025)</li>
+              <li>MS Office Certificate – Mythri Ojas Academy (Sep–Dec 2023)</li>
+              <li>Programming Foundations with JavaScript, HTML, and CSS – Coursera (Duke University)</li>
+              <li>5-Star Python — HackerRank</li>
+              <li>250+ LeetCode Problems Solved</li>
+            </ul>
+          </motion.div>
 
           {/* Development Principles */}
           <motion.div variants={itemVariants}>
@@ -133,7 +150,7 @@ const About = () => {
               Development Principles
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {principles.map((principle, index) => (
+              {principles.map((principle) => (
                 <motion.div
                   key={principle.title}
                   variants={itemVariants}
